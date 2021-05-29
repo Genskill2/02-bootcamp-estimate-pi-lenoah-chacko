@@ -1,6 +1,25 @@
 import math
 import unittest
+from random import random
 
+def wallis(n):
+    product=1;
+    for i in range(1,n+1):
+        product=product*(4*i*i)/(4*i*i-1)
+    return 2*product
+
+def monte_carlo(n):
+    circ=0;
+    sq=0
+    for i in range(1,n+1):
+            x=random()
+            y=random()
+            dist=(x-0.5)*(x-0.5)+(y-0.5)*(y-0.5)
+            if dist<0.25:
+                circ=circ+1;
+            sq=sq+1
+    return 4*circ/sq
+    
 class TestWallis(unittest.TestCase):
     def test_low_iters(self):
         for i in range(0, 5):
